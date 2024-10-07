@@ -11,7 +11,7 @@
 
 ## Introduction
 
-The Busy Tag Spotify Widget is a Python-based application that fetches the currently playing track from Spotify account and displays it on your Busy Tag device. The widget displays the album image, track name, and artist information, updating automatically whenever the track changes.
+The Busy Tag Spotify Widget is a Python-based application that fetches the currently playing track from your Spotify account and displays it on your Busy Tag device. The widget now supports displaying track videos by fetching the track's .mp4 file and converting it into a .gif. It still displays the album image, track name, and artist information, and updates automatically whenever the track changes.
 
 ## Project Purpose
 
@@ -19,7 +19,7 @@ The main goal of this project is to:
 	
 - Integrate with the Spotify API to fetch the current track information.
 
-- Display album art, track name, and artist on a Busy Tag device.
+- Display album art, track name, artist information, and the track's video on a Busy Tag device.
 
 - Automatically update the displayed information when the track changes or when playback is paused or resumed.
 
@@ -30,6 +30,7 @@ To run this script, ensure you have the following installed:
 - Python 3.6 or higher
 - `Pillow` (PIL Fork) - Python Imaging Library
 - `requests` for API calls
+- gifsicle for handling GIF optimization
 - A Busy Tag device connected to your computer.
 - Spotify Client ID
 - Spotify account
@@ -56,6 +57,10 @@ To run this script, ensure you have the following installed:
 
 4. Ensure the default font file `MontserratBlack-3zOvZ.ttf` is in the project directory.
 
+5. Install gifsicle (for GIF creation and optimization):
+
+	Follow this guide for installation instructions
+
 ## Configuration
 
 The script provides several customizable parameters:
@@ -64,7 +69,7 @@ The script provides several customizable parameters:
 
 • **Drive Letter:** Prompted input for the drive letter where the Busy Tag device is located (e.g., `D`).
 
-• **Image Processing:** Customize how the album art and text are displayed by adjusting parameters in image_operations.py.
+• **Image and Video Processing:** Customize how the album art, text, and track video are processed by adjusting parameters in `image_operations.py` and `save_canvas.py`.
 
 
 ## Usage
@@ -83,7 +88,7 @@ python main.py
 	
 4. **Automatic Operation:**
 	
-	The widget will start fetching the current Spotify track information, updating the Busy Tag device with the album art, track name, and artist details.
+	The widget will start fetching the current Spotify track information and, if available, will fetch the track's video, convert it to a .gif, and update the Busy Tag device with the video, album art, track name, and artist details.
 	
 ### Example
 
@@ -97,9 +102,17 @@ Now playing: Shape of You by Ed Sheeran
 ```
 
 The Busy Tag device will display the album art, track name, and artist.
+
 Sample:
 
 <img src="/current_track_image_sample.png" alt="Current Track Image" width="300" height="390"/>
+
+After that if the track has video available the app will download the video, convert it to .gif file and will start to display it on Busy Tag device.
+
+Sample:
+
+<img src="/current_track_gif_sample.gif" alt="Current Track Gif" width="300" height="390"/>
+
 
 ### Troubleshooting
 
